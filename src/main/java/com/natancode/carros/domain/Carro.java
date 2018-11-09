@@ -1,20 +1,19 @@
 package com.natancode.carros.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.natancode.carros.enums.Cor;
 
 @Entity
-public class Categoria implements Serializable {
+public class Carro implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -22,19 +21,25 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private Double valorDiario;
+	private String placa;
 	
-	@JsonIgnore 
-	@OneToMany(mappedBy="categoria")
-	private List<Carro> carros = new ArrayList<>();
+	private Date dataAquisicao;
+	private Integer cor;
 	
-	public Categoria() {}
+	@ManyToOne
+	@JoinColumn(name="categoria_id")
+	private Categoria categoria;
 	
-	public Categoria(Integer id, String nome, Double valorDiario) {
+	public Carro() {}
+	
+	public Carro(Integer id, String nome, String placa, Date dataAquisicao, Categoria categoria, Cor cor) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.valorDiario = valorDiario;
+		this.placa = placa;
+		this.dataAquisicao = dataAquisicao;
+		this.categoria = categoria;
+		this.cor  = cor.getCod();
 	}
 
 	public Integer getId() {
@@ -53,20 +58,28 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
-	public Double getValorDiario() {
-		return valorDiario;
+	public String getPlaca() {
+		return placa;
 	}
 
-	public void setValorDiario(Double valorDiario) {
-		this.valorDiario = valorDiario;
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 
-	public List<Carro> getCarros() {
-		return carros;
+	public Date getDataAquisicao() {
+		return dataAquisicao;
 	}
 
-	public void setCarros(List<Carro> carros) {
-		this.carros = carros;
+	public void setDataAquisicao(Date dataAquisicao) {
+		this.dataAquisicao = dataAquisicao;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override
@@ -85,7 +98,7 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Carro other = (Carro) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
