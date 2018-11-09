@@ -30,9 +30,13 @@ public class Carro implements Serializable {
 	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
 	
+	@ManyToOne
+	@JoinColumn(name="modelo_id")
+	private Modelo modelo;
+	
 	public Carro() {}
 	
-	public Carro(Integer id, String nome, String placa, Date dataAquisicao, Categoria categoria, Cor cor) {
+	public Carro(Integer id, String nome, String placa, Date dataAquisicao, Categoria categoria, Cor cor, Modelo modelo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -40,6 +44,7 @@ public class Carro implements Serializable {
 		this.dataAquisicao = dataAquisicao;
 		this.categoria = categoria;
 		this.cor  = cor.getCod();
+		this.modelo = modelo;
 	}
 
 	public Integer getId() {
@@ -80,6 +85,22 @@ public class Carro implements Serializable {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Integer getCor() {
+		return cor;
+	}
+
+	public void setCor(Integer cor) {
+		this.cor = cor;
+	}
+
+	public Modelo getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(Modelo modelo) {
+		this.modelo = modelo;
 	}
 
 	@Override
