@@ -10,10 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.natancode.carros.domain.Carro;
 import com.natancode.carros.domain.Categoria;
+import com.natancode.carros.domain.Cidade;
+import com.natancode.carros.domain.Estado;
 import com.natancode.carros.domain.Modelo;
 import com.natancode.carros.enums.Cor;
 import com.natancode.carros.repositories.CarroRepository;
 import com.natancode.carros.repositories.CategoriaRepository;
+import com.natancode.carros.repositories.CidadeRepository;
+import com.natancode.carros.repositories.EstadoRepository;
 import com.natancode.carros.repositories.ModeloRepository;
 
 @SpringBootApplication
@@ -27,6 +31,12 @@ public class CarrosApplication implements CommandLineRunner {
 	
 	@Autowired 
 	private ModeloRepository modeloRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CarrosApplication.class, args);
@@ -61,6 +71,19 @@ public class CarrosApplication implements CommandLineRunner {
 		mod4.getCarros().addAll(Arrays.asList(car4));
 		
 		carroRepository.saveAll(Arrays.asList(car1, car2, car3, car4));
+		
+		Estado est1 = new Estado(null, "Rio de Janeiro");
+		Estado est2 = new Estado(null, "Minas Gerais");
+		
+		Cidade cid1 = new Cidade(null, "Rio de Janeiro", est1);
+		Cidade cid2 = new Cidade(null, "Niteroi", est1);
+		Cidade cid3 = new Cidade(null, "Belo Horizonte", est2);
+		
+		est1.getCidades().addAll(Arrays.asList(cid1, cid2));
+		est2.getCidades().addAll(Arrays.asList(cid3));
+		
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 		
 	}
 }
