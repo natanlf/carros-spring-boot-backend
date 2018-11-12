@@ -2,12 +2,14 @@ package com.natancode.carros.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Endereco implements Serializable {
@@ -26,6 +28,9 @@ public class Endereco implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
 	private Cidade cidade;
+	
+	@OneToOne(cascade=CascadeType.ALL,mappedBy="endereco")
+	private Sede sede;
 	
 	public Endereco() {}
 	
@@ -94,6 +99,14 @@ public class Endereco implements Serializable {
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	public Sede getSede() {
+		return sede;
+	}
+
+	public void setSede(Sede sede) {
+		this.sede = sede;
 	}
 
 	@Override

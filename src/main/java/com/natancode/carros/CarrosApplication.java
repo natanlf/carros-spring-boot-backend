@@ -14,6 +14,7 @@ import com.natancode.carros.domain.Cidade;
 import com.natancode.carros.domain.Endereco;
 import com.natancode.carros.domain.Estado;
 import com.natancode.carros.domain.Modelo;
+import com.natancode.carros.domain.Sede;
 import com.natancode.carros.enums.Cor;
 import com.natancode.carros.repositories.CarroRepository;
 import com.natancode.carros.repositories.CategoriaRepository;
@@ -21,6 +22,7 @@ import com.natancode.carros.repositories.CidadeRepository;
 import com.natancode.carros.repositories.EnderecoRepository;
 import com.natancode.carros.repositories.EstadoRepository;
 import com.natancode.carros.repositories.ModeloRepository;
+import com.natancode.carros.repositories.SedeRepository;
 
 @SpringBootApplication
 public class CarrosApplication implements CommandLineRunner {
@@ -42,6 +44,9 @@ public class CarrosApplication implements CommandLineRunner {
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private SedeRepository sedeRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CarrosApplication.class, args);
@@ -95,6 +100,17 @@ public class CarrosApplication implements CommandLineRunner {
 		Endereco end3 = new Endereco(null, "Av. das Américas", "4666", null, "Barra da Tijuca", "22640102", cid1);
 		Endereco end4 = new Endereco(null, "Av. Pres. Antônio Carlos", "6627", null, "Pampulha", "31270901", cid3);
 		
+		Sede sed1 = new Sede(null, -22.8847251, -43.5576218, end1);
+		Sede sed2 = new Sede(null, -22.9034915, -43.1018899, end2);
+		Sede sed3 = new Sede(null, -22.9034915, -43.1018899, end3);
+		Sede sed4 = new Sede(null, -22.9034915, -43.1018899, end4);
+		
+		end1.setSede(sed1);
+		end2.setSede(sed2);
+		end3.setSede(sed3);
+		end4.setSede(sed4);
+		
 		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4));
+		sedeRepository.saveAll(Arrays.asList(sed1, sed2, sed3, sed4));
 	}
 }
