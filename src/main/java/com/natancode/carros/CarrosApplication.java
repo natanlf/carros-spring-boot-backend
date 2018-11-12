@@ -11,12 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.natancode.carros.domain.Carro;
 import com.natancode.carros.domain.Categoria;
 import com.natancode.carros.domain.Cidade;
+import com.natancode.carros.domain.Endereco;
 import com.natancode.carros.domain.Estado;
 import com.natancode.carros.domain.Modelo;
 import com.natancode.carros.enums.Cor;
 import com.natancode.carros.repositories.CarroRepository;
 import com.natancode.carros.repositories.CategoriaRepository;
 import com.natancode.carros.repositories.CidadeRepository;
+import com.natancode.carros.repositories.EnderecoRepository;
 import com.natancode.carros.repositories.EstadoRepository;
 import com.natancode.carros.repositories.ModeloRepository;
 
@@ -37,6 +39,9 @@ public class CarrosApplication implements CommandLineRunner {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CarrosApplication.class, args);
@@ -85,5 +90,11 @@ public class CarrosApplication implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 		
+		Endereco end1 = new Endereco(null, "Estr. do Mendanha", "555", null, "Campo Grande", "23087283", cid1);
+		Endereco end2 = new Endereco(null, "Rua João Pessoa", "211", "Próximo a praia", "Icaraí", "24220330", cid2);
+		Endereco end3 = new Endereco(null, "Av. das Américas", "4666", null, "Barra da Tijuca", "22640102", cid1);
+		Endereco end4 = new Endereco(null, "Av. Pres. Antônio Carlos", "6627", null, "Pampulha", "31270901", cid3);
+		
+		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4));
 	}
 }
