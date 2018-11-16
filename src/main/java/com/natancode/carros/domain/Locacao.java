@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED) //mapeando herança. Fazendo uma tabela para cda classe
@@ -19,13 +21,23 @@ public class Locacao implements Serializable {
 	private Date instanteLocacao;
 	private Date instanteDevolucao;
 	
+	@ManyToOne
+	@JoinColumn(name="cliente_id")
+	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name="carro_id")
+	private Carro carro;
+	
 	public Locacao() {}
 	
-	public Locacao(Integer id, Date instanteLocacao, Date instanteDevolucao) {
+	public Locacao(Integer id, Date instanteLocacao, Date instanteDevolucao, Cliente cliente, Carro carro) {
 		super();
 		this.id = id;
 		this.instanteLocacao = instanteLocacao;
 		this.instanteDevolucao = instanteDevolucao;
+		this.cliente = cliente;
+		this.carro = carro;
 	}
 
 	public Integer getId() {
@@ -50,6 +62,22 @@ public class Locacao implements Serializable {
 
 	public void setInstanteDevolucao(Date instanteDevolucao) {
 		this.instanteDevolucao = instanteDevolucao;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Carro getCarro() {
+		return carro;
+	}
+
+	public void setCarro(Carro carro) {
+		this.carro = carro;
 	}
 
 	@Override

@@ -13,8 +13,8 @@ public class LocacaoLongoPeriodo extends Locacao {
 	
 	public LocacaoLongoPeriodo() {}
 	
-	public LocacaoLongoPeriodo(Integer id, Date instanteLocacao, Date instanteDevolucao, Double desconto) {
-		super(id, instanteLocacao, instanteDevolucao);
+	public LocacaoLongoPeriodo(Integer id, Date instanteLocacao, Date instanteDevolucao, Cliente cliente, Carro carro, Double desconto) {
+		super(id, instanteLocacao, instanteDevolucao, cliente, carro);
 		this.desconto = desconto;
 	}
 

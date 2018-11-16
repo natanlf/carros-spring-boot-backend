@@ -1,7 +1,9 @@
 package com.natancode.carros.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.natancode.carros.enums.Cor;
 
@@ -34,6 +37,9 @@ public class Carro implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="modelo_id")
 	private Modelo modelo;
+	
+	@OneToMany(mappedBy="carro")
+	private List<Locacao> locacoes = new ArrayList<>();
 	
 	public Carro() {}
 	
@@ -111,6 +117,14 @@ public class Carro implements Serializable {
 
 	public void setAno(Integer ano) {
 		this.ano = ano;
+	}
+
+	public List<Locacao> getLocacoes() {
+		return locacoes;
+	}
+
+	public void setLocacoes(List<Locacao> locacoes) {
+		this.locacoes = locacoes;
 	}
 
 	@Override
