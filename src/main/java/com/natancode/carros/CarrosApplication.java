@@ -11,16 +11,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.natancode.carros.domain.Carro;
 import com.natancode.carros.domain.Categoria;
 import com.natancode.carros.domain.Cidade;
+import com.natancode.carros.domain.Cliente;
 import com.natancode.carros.domain.Endereco;
 import com.natancode.carros.domain.Estado;
+import com.natancode.carros.domain.LocacaoDiaria;
+import com.natancode.carros.domain.LocacaoLongoPeriodo;
 import com.natancode.carros.domain.Modelo;
 import com.natancode.carros.domain.Sede;
 import com.natancode.carros.enums.Cor;
 import com.natancode.carros.repositories.CarroRepository;
 import com.natancode.carros.repositories.CategoriaRepository;
 import com.natancode.carros.repositories.CidadeRepository;
+import com.natancode.carros.repositories.ClienteRepository;
 import com.natancode.carros.repositories.EnderecoRepository;
 import com.natancode.carros.repositories.EstadoRepository;
+import com.natancode.carros.repositories.LocacaoRepository;
 import com.natancode.carros.repositories.ModeloRepository;
 import com.natancode.carros.repositories.SedeRepository;
 
@@ -47,6 +52,12 @@ public class CarrosApplication implements CommandLineRunner {
 	
 	@Autowired
 	private SedeRepository sedeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private LocacaoRepository locacaoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CarrosApplication.class, args);
@@ -112,5 +123,23 @@ public class CarrosApplication implements CommandLineRunner {
 		
 		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4));
 		sedeRepository.saveAll(Arrays.asList(sed1, sed2, sed3, sed4));
+		
+		Cliente cli1 = new Cliente(null, "Renata Alves", "57137591051", "renataalves@gmail.com");
+		Cliente cli2 = new Cliente(null, "Gustavo Green", "63539631062", "gustavogreen@gmail.com");
+		Cliente cli3 = new Cliente(null, "Robson Nunes", "62294218019", "robsonnunes@gmail.com");
+		
+		LocacaoDiaria l1 = new LocacaoDiaria(null, sdf.parse("09/11/2018 09:32"), sdf.parse("09/11/2018 20:25"), cli1, car1, 1);
+		LocacaoLongoPeriodo l2 = new LocacaoLongoPeriodo(null, sdf.parse("09/11/2018 09:32"), sdf.parse("12/11/2018 20:25"), cli2, car2, 5.00);
+		LocacaoLongoPeriodo l3 = new LocacaoLongoPeriodo(null, sdf.parse("12/11/2018 15:02"), sdf.parse("16/11/2018 08:32"), cli1, car3, 10.00);
+		
+		cli1.getLocacoes().addAll(Arrays.asList(l1, l3));
+		cli2.getLocacoes().addAll(Arrays.asList(l2));
+		
+		car1.getLocacoes().addAll(Arrays.asList(l1));
+		car2.getLocacoes().addAll(Arrays.asList(l2));
+		car3.getLocacoes().addAll(Arrays.asList(l3));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2, cli3));
+		locacaoRepository.saveAll(Arrays.asList(l1, l2, l3));
 	}
 }
