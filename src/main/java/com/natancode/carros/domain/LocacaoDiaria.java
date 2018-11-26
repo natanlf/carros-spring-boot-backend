@@ -13,8 +13,8 @@ public class LocacaoDiaria extends Locacao {
 	
 	public LocacaoDiaria() {}
 
-	public LocacaoDiaria(Integer id, Date instanteLocacao, Date instanteDevolucao, Cliente cliente, Carro carro, Integer diasPrevistos) {
-		super(id, instanteLocacao, instanteDevolucao, cliente, carro);
+	public LocacaoDiaria(Integer id, Date instanteLocacao, Date instanteDevolucao, Cliente cliente, Carro carro, Sede sede, Integer diasPrevistos) {
+		super(id, instanteLocacao, instanteDevolucao, cliente, carro, sede);
 		this.diasPrevistos = diasPrevistos;
 	}
 

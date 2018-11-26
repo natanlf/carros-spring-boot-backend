@@ -1,6 +1,8 @@
 package com.natancode.carros.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -25,6 +28,12 @@ public class Sede implements Serializable {
 		@JoinColumn(name="endereco_id")
 		@MapsId //para o id do pagamento ser o mesmo do id do pedido
 	 	private Endereco endereco;
+	 	
+	 	@OneToMany(mappedBy="sede")
+	 	private List<Locacao> locacoes = new ArrayList<>();
+	 	
+	 	@OneToMany(mappedBy="sede")
+	 	private List<Carro> carros = new ArrayList<>();
 	 	
 	 	public Sede() {}
 
@@ -66,6 +75,38 @@ public class Sede implements Serializable {
 
 		public void setEndereco(Endereco endereco) {
 			this.endereco = endereco;
+		}
+
+		public Double getLat() {
+			return lat;
+		}
+
+		public void setLat(Double lat) {
+			this.lat = lat;
+		}
+
+		public Double getLog() {
+			return log;
+		}
+
+		public void setLog(Double log) {
+			this.log = log;
+		}
+
+		public List<Locacao> getLocacoes() {
+			return locacoes;
+		}
+
+		public void setLocacoes(List<Locacao> locacoes) {
+			this.locacoes = locacoes;
+		}
+
+		public List<Carro> getCarros() {
+			return carros;
+		}
+
+		public void setCarros(List<Carro> carros) {
+			this.carros = carros;
 		}
 
 		@Override

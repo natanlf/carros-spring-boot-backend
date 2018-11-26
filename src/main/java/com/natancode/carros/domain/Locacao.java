@@ -32,15 +32,20 @@ public class Locacao implements Serializable {
 	@JoinColumn(name="carro_id")
 	private Carro carro;
 	
+	@ManyToOne
+	@JoinColumn(name="sede_id")
+	private Sede sede;
+	
 	public Locacao() {}
 	
-	public Locacao(Integer id, Date instanteLocacao, Date instanteDevolucao, Cliente cliente, Carro carro) {
+	public Locacao(Integer id, Date instanteLocacao, Date instanteDevolucao, Cliente cliente, Carro carro, Sede sede) {
 		super();
 		this.id = id;
 		this.instanteLocacao = instanteLocacao;
 		this.instanteDevolucao = instanteDevolucao;
 		this.cliente = cliente;
 		this.carro = carro;
+		this.sede = sede;
 	}
 
 	public Integer getId() {
@@ -81,6 +86,14 @@ public class Locacao implements Serializable {
 
 	public void setCarro(Carro carro) {
 		this.carro = carro;
+	}
+	
+	public Sede getSede() {
+		return sede;
+	}
+
+	public void setSede(Sede sede) {
+		this.sede = sede;
 	}
 
 	@Override

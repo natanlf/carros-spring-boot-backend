@@ -41,9 +41,13 @@ public class Carro implements Serializable {
 	@OneToMany(mappedBy="carro")
 	private List<Locacao> locacoes = new ArrayList<>();
 	
+	@ManyToOne
+	@JoinColumn(name="sede_id")
+	private Sede sede;
+	
 	public Carro() {}
 	
-	public Carro(Integer id, String nome, String placa, Date dataAquisicao, Categoria categoria, Cor cor, Modelo modelo, Integer ano) {
+	public Carro(Integer id, String nome, String placa, Date dataAquisicao, Categoria categoria, Cor cor, Modelo modelo, Integer ano, Sede sede) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -53,6 +57,7 @@ public class Carro implements Serializable {
 		this.cor  = cor.getCod();
 		this.modelo = modelo;
 		this.ano = ano;
+		this.sede = sede;
 	}
 
 	public Integer getId() {
@@ -125,6 +130,14 @@ public class Carro implements Serializable {
 
 	public void setLocacoes(List<Locacao> locacoes) {
 		this.locacoes = locacoes;
+	}
+
+	public Sede getSede() {
+		return sede;
+	}
+
+	public void setSede(Sede sede) {
+		this.sede = sede;
 	}
 
 	@Override
