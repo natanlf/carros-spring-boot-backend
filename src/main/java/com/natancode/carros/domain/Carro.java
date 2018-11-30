@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.natancode.carros.enums.Cor;
 
 @Entity
@@ -38,6 +39,7 @@ public class Carro implements Serializable {
 	@JoinColumn(name="modelo_id")
 	private Modelo modelo;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="carro")
 	private List<Locacao> locacoes = new ArrayList<>();
 	

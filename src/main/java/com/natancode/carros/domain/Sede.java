@@ -13,6 +13,8 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Sede implements Serializable {
 		
@@ -29,9 +31,11 @@ public class Sede implements Serializable {
 		@MapsId //para o id do pagamento ser o mesmo do id do pedido
 	 	private Endereco endereco;
 	 	
+	 	@JsonIgnore
 	 	@OneToMany(mappedBy="sede")
 	 	private List<Locacao> locacoes = new ArrayList<>();
 	 	
+	 	@JsonIgnore
 	 	@OneToMany(mappedBy="sede")
 	 	private List<Carro> carros = new ArrayList<>();
 	 	
@@ -51,22 +55,6 @@ public class Sede implements Serializable {
 
 		public void setId(Integer id) {
 			this.id = id;
-		}
-
-		public Double getX() {
-			return lat;
-		}
-
-		public void setX(Double x) {
-			this.lat = x;
-		}
-
-		public Double getY() {
-			return log;
-		}
-
-		public void setY(Double y) {
-			this.log = y;
 		}
 
 		public Endereco getEndereco() {
