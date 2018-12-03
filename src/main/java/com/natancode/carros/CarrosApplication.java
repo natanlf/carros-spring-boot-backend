@@ -130,6 +130,10 @@ public class CarrosApplication implements CommandLineRunner {
 		Cliente cli2 = new Cliente(null, "Gustavo Green", "63539631062", "gustavogreen@gmail.com");
 		Cliente cli3 = new Cliente(null, "Robson Nunes", "62294218019", "robsonnunes@gmail.com");
 		
+		cli1.getTelefones().addAll(Arrays.asList("(27) 3990-0996", "(27) 99582-6457"));
+		cli2.getTelefones().addAll(Arrays.asList("(21) 3990-8978", "(21) 97082-6457"));
+		cli3.getTelefones().addAll(Arrays.asList("(27) 3550-0016", "(27) 97882-3455"));
+		
 		LocacaoDiaria l1 = new LocacaoDiaria(null, sdf.parse("09/11/2018 09:32"), sdf.parse("09/11/2018 20:25"), cli1, car1, sed1, 1);
 		LocacaoLongoPeriodo l2 = new LocacaoLongoPeriodo(null, sdf.parse("09/11/2018 09:32"), sdf.parse("12/11/2018 20:25"), cli2, car2, sed1, 5.00);
 		LocacaoLongoPeriodo l3 = new LocacaoLongoPeriodo(null, sdf.parse("12/11/2018 15:02"), sdf.parse("16/11/2018 08:32"), cli1, car3, sed1, 10.00);
