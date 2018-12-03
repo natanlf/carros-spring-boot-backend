@@ -21,7 +21,7 @@ public class CarroResource {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Carro obj = service.findById(id);
+		Carro obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	

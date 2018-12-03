@@ -16,12 +16,22 @@ public class ModeloService {
 	@Autowired
 	private ModeloRepository repo;
 	
-	public Modelo findById(Integer id) {
+	public Modelo find(Integer id) {
 		Optional<Modelo> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Modelo.class.getName(), null)); 
 	}
 	
 	public List<Modelo> findAll() {
 		return repo.findAll();
+	}
+	
+	public Modelo insert(Modelo obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Modelo update(Modelo obj) {
+		find(obj.getId()); //se não encontrar o objeto lança um exceção e para a execução
+		return repo.save(obj);
 	}
 }

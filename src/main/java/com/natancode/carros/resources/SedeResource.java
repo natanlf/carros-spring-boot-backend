@@ -21,7 +21,7 @@ public class SedeResource {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Sede obj = service.findById(id);
+		Sede obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	

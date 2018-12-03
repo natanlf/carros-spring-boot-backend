@@ -16,12 +16,22 @@ public class SedeService {
 	@Autowired
 	private SedeRepository repo;
 	
-	public Sede findById(Integer id) {
+	public Sede find(Integer id) {
 		Optional<Sede> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Sede.class.getName(), null)); 
 	}
 	
 	public List<Sede> findAll() {
 		return repo.findAll();
+	}
+	
+	public Sede insert(Sede obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Sede update(Sede obj) {
+		find(obj.getId()); //se não encontrar o objeto lança um exceção e para a execução
+		return repo.save(obj);
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.natancode.carros.domain.Carro;
 import com.natancode.carros.repositories.CarroRepository;
+import com.natancode.carros.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CarroService {
@@ -15,12 +16,22 @@ public class CarroService {
 	@Autowired
 	private CarroRepository repo;
 	
-	public Carro findById(Integer id) {
+	public Carro find(Integer id) {
 		Optional<Carro> obj = repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Carro.class.getName(), null)); 
 	}
 	
 	public List<Carro> findAll() {
 		return repo.findAll();
+	}
+	
+	public Carro insert(Carro obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Carro update(Carro obj) {
+		find(obj.getId()); //se não encontrar o objeto lança um exceção e para a execução
+		return repo.save(obj);
 	}
 }
