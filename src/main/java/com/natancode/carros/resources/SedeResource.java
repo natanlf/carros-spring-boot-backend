@@ -2,14 +2,18 @@ package com.natancode.carros.resources;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.natancode.carros.domain.Sede;
+import com.natancode.carros.dto.SedeDTO;
 import com.natancode.carros.services.SedeService;
 
 @RestController
@@ -29,5 +33,13 @@ public class SedeResource {
 	public ResponseEntity<?> findAll() {
 		List<Sede> list = service.findAll();
 		return ResponseEntity.ok().body(list);
+	}
+	
+	@RequestMapping(value="/{id}" ,method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody SedeDTO objDto, @PathVariable Integer id){
+		Sede obj = service.fromDTO(objDto);
+		obj.setId(id); //garantindo que vai atualizar com o id passado
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

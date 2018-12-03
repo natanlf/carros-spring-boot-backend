@@ -40,6 +40,13 @@ public class Sede implements Serializable {
 	 	private List<Carro> carros = new ArrayList<>();
 	 	
 	 	public Sede() {}
+	 	
+		public Sede(Integer id, Double x, Double y) {
+			super();
+			this.id = id;
+			this.lat = x;
+			this.log = y;
+		}
 
 		public Sede(Integer id, Double x, Double y, Endereco endereco) {
 			super();

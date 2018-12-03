@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.natancode.carros.domain.Sede;
+import com.natancode.carros.dto.SedeDTO;
 import com.natancode.carros.repositories.SedeRepository;
 import com.natancode.carros.services.exceptions.ObjectNotFoundException;
 
@@ -31,7 +32,17 @@ public class SedeService {
 	}
 	
 	public Sede update(Sede obj) {
-		find(obj.getId()); //se não encontrar o objeto lança um exceção e para a execução
-		return repo.save(obj);
+		Sede newObj = find(obj.getId()); //se não encontrar esse id, já lança uma exceção e não continua
+		updateData(newObj, obj); //transforma um dto para domain
+		return repo.save(newObj);
+	}
+	
+	public Sede fromDTO(SedeDTO objDto) { //instancio a partir de um DTO
+		return new Sede(objDto.getId(), objDto.getLat(), objDto.getLog());
+	}
+	
+	private void updateData(Sede newObj, Sede obj) {
+		newObj.setLat(obj.getLat());
+		newObj.setLog(obj.getLog());
 	}
 }
