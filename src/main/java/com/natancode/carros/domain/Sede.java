@@ -27,9 +27,8 @@ public class Sede implements Serializable {
 	 	private Double lat;
 	 	private Double log;
 	 	
-	 	@OneToOne
+	 	@OneToOne(cascade=CascadeType.ALL)
 		@JoinColumn(name="endereco_id")
-		@MapsId //para o id do pagamento ser o mesmo do id do pedido
 	 	private Endereco endereco;
 	 	
 	 	@JsonIgnore
