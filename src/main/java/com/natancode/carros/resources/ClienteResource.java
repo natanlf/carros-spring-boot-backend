@@ -3,6 +3,8 @@ package com.natancode.carros.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.natancode.carros.domain.Cliente;
+import com.natancode.carros.dto.ClienteDTO;
 import com.natancode.carros.dto.ClienteNewDTO;
 import com.natancode.carros.services.ClienteService;
 
@@ -46,10 +49,17 @@ public class ClienteResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Cliente obj, @PathVariable Integer id){
+	@RequestMapping(value="/{id}" ,method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
+		Cliente obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }
