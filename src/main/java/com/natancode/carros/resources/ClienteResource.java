@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.natancode.carros.domain.Cliente;
+import com.natancode.carros.dto.ClienteNewDTO;
 import com.natancode.carros.services.ClienteService;
 
 @RestController
@@ -35,7 +36,8 @@ public class ClienteResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Cliente obj){
+	public ResponseEntity<Void> insert(@RequestBody ClienteNewDTO objDto){
+		Cliente obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

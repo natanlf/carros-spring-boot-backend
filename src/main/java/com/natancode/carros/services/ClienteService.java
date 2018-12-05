@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.natancode.carros.domain.Cliente;
+import com.natancode.carros.dto.ClienteNewDTO;
 import com.natancode.carros.repositories.ClienteRepository;
 import com.natancode.carros.services.exceptions.ObjectNotFoundException;
 
@@ -23,6 +24,18 @@ public class ClienteService {
 	
 	public List<Cliente> findAll() {
 		return repo.findAll();
+	}
+	
+	public Cliente fromDTO(ClienteNewDTO objDto) {
+		Cliente cliente =  new Cliente(null, objDto.getNome(), objDto.getCpf(), objDto.getEmail());
+		cliente.getTelefones().add(objDto.getTelefone1());
+		
+		if(objDto.getTelefone2()!=null) //Tel 2 e 3 não são obrigatórios
+			cliente.getTelefones().add(objDto.getTelefone2());
+		if(objDto.getTelefone3()!=null)
+			cliente.getTelefones().add(objDto.getTelefone3());
+		
+		return cliente;
 	}
 	
 	public Cliente insert(Cliente obj) {
