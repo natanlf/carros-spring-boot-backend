@@ -52,7 +52,7 @@ public class ClienteResource {
 	@RequestMapping(value="/{id}" ,method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
 		Cliente obj = service.fromDTO(objDto);
-		obj.setId(id);
+		obj.setId(id); //garantindo que vai atualizar a categoria com o id passado
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}

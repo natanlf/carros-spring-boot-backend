@@ -43,7 +43,7 @@ public class ClienteService {
 	}
 
 	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getCpf(), objDto.getEmail());
+		return new Cliente(objDto.getId(), objDto.getNome(), null, objDto.getEmail());
 	}
 
 	public Cliente insert(Cliente obj) {
@@ -52,8 +52,14 @@ public class ClienteService {
 	}
 
 	public Cliente update(Cliente obj) {
-		find(obj.getId()); // se não encontrar o objeto lança um exceção e para a execução
-		return repo.save(obj);
+		Cliente newObj = find(obj.getId()); //se não encontrar esse id, já lança uma exceção e não continua
+		updateData(newObj, obj);
+		return repo.save(newObj); //save or update, quando o id é nulo insere, quando não é atualiza
+	}
+	
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
 	}
 	
 	public void delete(Integer id) {
