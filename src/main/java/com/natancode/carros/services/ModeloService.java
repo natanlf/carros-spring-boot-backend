@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.natancode.carros.domain.Modelo;
+import com.natancode.carros.dto.ModeloDTO;
 import com.natancode.carros.repositories.ModeloRepository;
 import com.natancode.carros.services.exceptions.ObjectNotFoundException;
 
@@ -33,5 +34,9 @@ public class ModeloService {
 	public Modelo update(Modelo obj) {
 		find(obj.getId()); //se não encontrar o objeto lança um exceção e para a execução
 		return repo.save(obj);
+	}
+	
+	public Modelo fromDTO(ModeloDTO objDto) {
+		return new Modelo(null, objDto.getNome());
 	}
 }

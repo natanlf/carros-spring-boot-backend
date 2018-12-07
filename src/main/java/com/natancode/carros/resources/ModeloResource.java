@@ -3,6 +3,8 @@ package com.natancode.carros.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.natancode.carros.domain.Modelo;
+import com.natancode.carros.dto.ModeloDTO;
 import com.natancode.carros.services.ModeloService;
 
 @RestController
@@ -35,7 +38,8 @@ public class ModeloResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Modelo obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody ModeloDTO objDto){
+		Modelo obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -45,7 +49,8 @@ public class ModeloResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Modelo obj, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@Valid @RequestBody ModeloDTO objDto, @PathVariable Integer id){
+		Modelo obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
