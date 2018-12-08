@@ -102,8 +102,8 @@ public class Carro implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public Integer getCor() {
-		return cor;
+	public Cor getCor() {
+		return Cor.toEnum(cor);
 	}
 
 	public void setCor(Integer cor) {
