@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.natancode.carros.domain.Carro;
@@ -17,6 +21,7 @@ import com.natancode.carros.dto.CarroDTO;
 import com.natancode.carros.dto.CarroNewDTO;
 import com.natancode.carros.enums.Cor;
 import com.natancode.carros.repositories.CarroRepository;
+import com.natancode.carros.services.exceptions.DataIntegrityException;
 import com.natancode.carros.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -82,5 +87,19 @@ public class CarroService {
 		newObj.setCor(obj.getCor().getCod());
 		newObj.setAno(obj.getAno());
 		newObj.setSede(obj.getSede());
+	}
+	
+	public void delete(Integer id) {
+		find(id); //se não encontrar já retorna uam exception
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir porque há entidades relacionadas");
+		}
+	}
+	
+	public Page<Carro> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
 	}
 }
