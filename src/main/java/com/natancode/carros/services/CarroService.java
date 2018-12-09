@@ -13,6 +13,7 @@ import com.natancode.carros.domain.Carro;
 import com.natancode.carros.domain.Categoria;
 import com.natancode.carros.domain.Modelo;
 import com.natancode.carros.domain.Sede;
+import com.natancode.carros.dto.CarroDTO;
 import com.natancode.carros.dto.CarroNewDTO;
 import com.natancode.carros.enums.Cor;
 import com.natancode.carros.repositories.CarroRepository;
@@ -48,8 +49,9 @@ public class CarroService {
 	}
 	
 	public Carro update(Carro obj) {
-		find(obj.getId()); //se não encontrar o objeto lança um exceção e para a execução
-		return repo.save(obj);
+		Carro newObj = find(obj.getId()); //se não encontrar o objeto lança um exceção e para a execução
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 	
 	public Carro fromDTO(CarroNewDTO objDto) {
@@ -65,5 +67,20 @@ public class CarroService {
 		}
 		
 		return new Carro(null, objDto.getNome(), objDto.getPlaca(), date, categoria, Cor.toEnum(objDto.getCor()), modelo, objDto.getAno(), sede);
+	}
+	
+	public Carro fromDTO(CarroDTO objDto) {
+
+		Sede sede = sedeService.find(objDto.getSedeId());
+		
+		return new Carro(null, objDto.getNome(), objDto.getPlaca(), null, null, Cor.toEnum(objDto.getCor()), null, objDto.getAno(), sede);
+	}
+	
+	private void updateData(Carro newObj, Carro obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setPlaca(obj.getPlaca());
+		newObj.setCor(obj.getCor().getCod());
+		newObj.setAno(obj.getAno());
+		newObj.setSede(obj.getSede());
 	}
 }

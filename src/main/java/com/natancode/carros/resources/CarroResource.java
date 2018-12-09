@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.natancode.carros.domain.Carro;
+import com.natancode.carros.dto.CarroDTO;
 import com.natancode.carros.dto.CarroNewDTO;
 import com.natancode.carros.services.CarroService;
 
@@ -45,5 +46,13 @@ public class CarroResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri(); 
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{id}" ,method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody CarroDTO objDto, @PathVariable Integer id){
+		Carro obj = service.fromDTO(objDto);
+		obj.setId(id); //garantindo que vai atualizar a categoria com o id passado
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

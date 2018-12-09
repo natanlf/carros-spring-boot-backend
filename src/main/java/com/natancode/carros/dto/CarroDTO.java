@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-public class CarroNewDTO implements Serializable {
+public class CarroDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -26,22 +26,13 @@ public class CarroNewDTO implements Serializable {
 	@Max(3)
 	private Integer cor;
 	
-	@NotEmpty
-	private String dataAquisicao;
-	
 	@NotNull
 	private Integer ano;
 	
 	@NotNull
-	private Integer categoriaId;
-	
-	@NotNull
-	private Integer modeloId;
-	
-	@NotNull
 	private Integer sedeId;
 	
-	public CarroNewDTO() {}
+	public CarroDTO() {}
 
 	public String getNome() {
 		return nome;
@@ -75,22 +66,6 @@ public class CarroNewDTO implements Serializable {
 		this.ano = ano;
 	}
 
-	public Integer getCategoriaId() {
-		return categoriaId;
-	}
-
-	public void setCategoriaId(Integer categoriaId) {
-		this.categoriaId = categoriaId;
-	}
-
-	public Integer getModeloId() {
-		return modeloId;
-	}
-
-	public void setModeloId(Integer modeloId) {
-		this.modeloId = modeloId;
-	}
-
 	public Integer getSedeId() {
 		return sedeId;
 	}
@@ -99,11 +74,4 @@ public class CarroNewDTO implements Serializable {
 		this.sedeId = sedeId;
 	}
 
-	public String getDataAquisicao() {
-		return dataAquisicao;
-	}
-
-	public void setDataAquisicao(String dataAquisicao) {
-		this.dataAquisicao = dataAquisicao;
-	}
 }
