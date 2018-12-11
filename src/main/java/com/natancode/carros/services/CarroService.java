@@ -98,9 +98,9 @@ public class CarroService {
 		}
 	}
 	
-	public Page<Carro> findPage(Integer categoriaId, Integer page, Integer linesPerPage, String orderBy, String direction){
+	public Page<Carro> findPage(Integer categoriaId, String nome, Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		Categoria categoria = categoriaService.find(categoriaId);
-		return repo.findByCategoriaEquals(categoria, pageRequest);
+		return repo.findByCategoriaEqualsAndNomeContainingIgnoreCase(categoria, nome, pageRequest);
 	}
 }

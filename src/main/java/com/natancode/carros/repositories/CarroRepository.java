@@ -14,5 +14,5 @@ import com.natancode.carros.domain.Categoria;
 public interface CarroRepository extends JpaRepository<Carro, Integer> {
 
 	@Transactional(readOnly=true)
-	Page<Carro>findByCategoriaEquals(@Param("categoria") Categoria categoria, Pageable pageRequest);
+	Page<Carro>findByCategoriaEqualsAndNomeContainingIgnoreCase(@Param("categoria") Categoria categoria, @Param("nome") String nome, Pageable pageRequest);
 }
