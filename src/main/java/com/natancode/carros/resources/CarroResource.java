@@ -66,7 +66,7 @@ public class CarroResource {
 	}
 	
 	@RequestMapping(value="/page" ,method=RequestMethod.GET) 
-	public ResponseEntity<Page<Carro>> findPage( //parametro opcionais
+	public ResponseEntity<Page<CarroDTO>> findPage( //parametro opcionais
 			@RequestParam(value="categoria", defaultValue="1") Integer categoria,
 			@RequestParam(value="nome", defaultValue="") String nome,
 			@RequestParam(value="page", defaultValue="0") Integer page, 
@@ -77,6 +77,7 @@ public class CarroResource {
 		String nomeDecoded =  URL.decodeParam(nome);
 		
 		Page<Carro> list = service.findPage(categoria, nomeDecoded, page, linesPerPage, orderBy, direction);
-		return ResponseEntity.ok().body(list); 
+		Page<CarroDTO> listDTO = list.map(obj -> new CarroDTO(obj));
+		return ResponseEntity.ok().body(listDTO); 
 	}
 }

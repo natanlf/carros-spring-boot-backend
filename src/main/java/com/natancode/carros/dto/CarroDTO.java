@@ -9,9 +9,13 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.natancode.carros.domain.Carro;
+
 public class CarroDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
 
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")
@@ -33,6 +37,23 @@ public class CarroDTO implements Serializable {
 	private Integer sedeId;
 	
 	public CarroDTO() {}
+
+	public CarroDTO(Carro obj) {
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.placa = obj.getPlaca();
+		this.ano = obj.getAno();
+		this.cor = obj.getCor().getCod();
+		this.sedeId = obj.getSede().getId();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
