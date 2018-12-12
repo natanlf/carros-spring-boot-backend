@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,13 @@ public class LocacaoResource {
 		List<Locacao> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id) {
+		Locacao obj = service.find(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody Locacao obj){ // http de resposta é 201 para inserção, RequestBody faz o json ser convertido para objeto java	
 		obj =service.insert(obj); //a operação save retorna um objeto	
