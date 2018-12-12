@@ -12,8 +12,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED) //mapeando herança. Fazendo uma tabela para cda classe
+@Inheritance(strategy=InheritanceType.JOINED) //mapeando herança. Fazendo uma tabela para cada classe
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public class Locacao implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -21,7 +25,9 @@ public class Locacao implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id; 
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date instanteLocacao;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date instanteDevolucao;
 	
 	@ManyToOne

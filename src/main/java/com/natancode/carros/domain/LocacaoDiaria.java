@@ -4,7 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 @Entity
+@JsonTypeName("LocacaoDiaria")
 public class LocacaoDiaria extends Locacao {
 
 	private static final long serialVersionUID = 1L;
