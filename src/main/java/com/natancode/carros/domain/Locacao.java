@@ -126,4 +126,25 @@ public class Locacao implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Locacao [id=");
+		builder.append(id);
+		builder.append(", instanteLocacao=");
+		builder.append(instanteLocacao);
+		builder.append(", instanteDevolucao=");
+		builder.append(instanteDevolucao);
+		builder.append(", cliente=");
+		builder.append(cliente);
+		builder.append(", carro=");
+		builder.append(carro);
+		builder.append(", sede=");
+		builder.append(sede);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 }

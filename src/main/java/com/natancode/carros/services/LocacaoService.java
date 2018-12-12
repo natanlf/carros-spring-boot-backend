@@ -18,6 +18,9 @@ public class LocacaoService {
 
 	@Autowired
 	private LocacaoRepository repo;
+	
+	@Autowired
+	private EmailService emailService;
 
 	public Locacao find(Integer id) {
 		Optional<Locacao> obj = repo.findById(id);
@@ -35,6 +38,7 @@ public class LocacaoService {
 		obj.setInstanteLocacao(new Date());
 		
 		repo.save(obj);
+		emailService.senderLocacaoConfirmationEmail(obj);
 		return obj;
 	}
 
