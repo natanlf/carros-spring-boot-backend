@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.natancode.carros.domain.Cliente;
@@ -19,6 +20,9 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository repo;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 
 	public Cliente find(Integer id) {
 		Optional<Cliente> obj = repo.findById(id);
@@ -31,7 +35,7 @@ public class ClienteService {
 	}
 
 	public Cliente fromDTO(ClienteNewDTO objDto) {
-		Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getCpf(), objDto.getEmail());
+		Cliente cliente = new Cliente(null, objDto.getNome(), objDto.getCpf(), objDto.getEmail(), pe.encode(objDto.getSenha()));
 		cliente.getTelefones().add(objDto.getTelefone1());
 
 		if (objDto.getTelefone2() != null) // Tel 2 e 3 não são obrigatórios
@@ -43,7 +47,7 @@ public class ClienteService {
 	}
 
 	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(objDto.getId(), objDto.getNome(), null, objDto.getEmail());
+		return new Cliente(objDto.getId(), objDto.getNome(), null, objDto.getEmail(), null);
 	}
 
 	public Cliente insert(Cliente obj) {

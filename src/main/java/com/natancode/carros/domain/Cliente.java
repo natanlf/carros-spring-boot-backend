@@ -30,6 +30,9 @@ public class Cliente implements Serializable {
 	@Column(unique=true) //campo unico
 	private String email;
 	
+	@JsonIgnore
+	private String senha;
+	
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
@@ -40,12 +43,13 @@ public class Cliente implements Serializable {
 	
 	public Cliente() {}
 
-	public Cliente(Integer id, String nome, String cpf, String email) {
+	public Cliente(Integer id, String nome, String cpf, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		this.senha = senha;
 	}
 
 	public Integer getId() {
@@ -78,6 +82,14 @@ public class Cliente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public Set<String> getTelefones() {
