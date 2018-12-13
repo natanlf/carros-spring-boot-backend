@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Confirmação de locação</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div>
+		<h1>
+			Locação número: <span th:text="${locacao.id}"> </span>
+		</h1>
+		<p>
+			Instante: <span
+				th:text="${#dates.format(locacao.instanteLocacao, 'dd/MM/yyyy hh:mm')}"></span>
+		</p>
+		<p>
+			Cliente: <span th:text="${locacao.cliente.nome}"></span>
+		</p>
+		<p>
+			Carro: <span
+				th:text="${locacao.carro.nome}"></span>
+		</p>
+
+	</div>
+</body>
+</html> 

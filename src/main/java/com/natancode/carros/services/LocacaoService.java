@@ -49,7 +49,7 @@ public class LocacaoService {
 		obj.setCarro(carroService.find(obj.getCarro().getId()));
 		obj.setSede(sedeService.find(obj.getSede().getId()));
 		repo.save(obj);
-		emailService.senderLocacaoConfirmationEmail(obj);
+		emailService.sendLocacaoConfirmationHtmlEmail(obj);
 		return obj;
 	}
 
