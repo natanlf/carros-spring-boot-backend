@@ -1,6 +1,7 @@
 package com.natancode.carros.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -129,21 +130,37 @@ public class Locacao implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Locacao [id=");
-		builder.append(id);
-		builder.append(", instanteLocacao=");
-		builder.append(instanteLocacao);
-		builder.append(", instanteDevolucao=");
-		builder.append(instanteDevolucao);
-		builder.append(", cliente=");
-		builder.append(cliente);
-		builder.append(", carro=");
-		builder.append(carro);
-		builder.append(", sede=");
-		builder.append(sede);
-		builder.append("]");
-		return builder.toString();
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+				StringBuilder builder = new StringBuilder();
+				builder.append("Pedido número: ");
+				builder.append(getId());
+				builder.append(", Data locação: ");
+				builder.append(sdf.format(getInstanteLocacao()));
+				
+				builder.append(", Data de devolução: ");
+				builder.append(sdf.format(getInstanteDevolucao()));
+				
+				builder.append("\nCliente:\n");
+				builder.append(getCliente().getNome());
+				
+				builder.append("\nDetalhes:\n");
+				builder.append("\nCarro:\n");
+				builder.append(getCarro().getNome());
+				
+				builder.append("\nSede:\n");
+				builder.append("Logradouro: ");
+				builder.append(getSede().getEndereco().getLogradouro());
+				builder.append(", Complemento: ");
+				builder.append(getSede().getEndereco().getComplemento());
+				builder.append(", Bairro: ");
+				builder.append(getSede().getEndereco().getBairro());
+				builder.append(", Cep: ");
+				builder.append(getSede().getEndereco().getCep());
+				builder.append(", Cidade: ");
+				builder.append(getSede().getEndereco().getCidade().getNome());
+				builder.append(", Estado: ");
+				builder.append(getSede().getEndereco().getCidade().getEstado().getNome());
+				return builder.toString();
 	}
 	
 	

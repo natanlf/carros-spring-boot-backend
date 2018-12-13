@@ -123,7 +123,7 @@ public class DBService {
 
 		carroRepository.saveAll(Arrays.asList(car1, car2, car3, car4));
 
-		Cliente cli1 = new Cliente(null, "Renata Alves", "57137591051", "renataalves@gmail.com");
+		Cliente cli1 = new Cliente(null, "Renata Alves", "57137591051", "natanlaraferreira@gmail.com");
 		Cliente cli2 = new Cliente(null, "Gustavo Green", "63539631062", "gustavogreen@gmail.com");
 		Cliente cli3 = new Cliente(null, "Robson Nunes", "62294218019", "robsonnunes@gmail.com");
 

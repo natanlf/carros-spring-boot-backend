@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.natancode.carros.services.DBService;
+import com.natancode.carros.services.EmailService;
+import com.natancode.carros.services.SmtpEmailService;
 
 @Configuration
 @Profile("dev")
@@ -31,4 +33,10 @@ public class DevConfig {
 			dbService.instantiateTestDatabase(); //instancio a classe que popula o banco
 			return true;
 		}
+		
+		@Bean
+		public EmailService emailService() { //Para poder enviar o email
+			return new SmtpEmailService();
+		}
+		
 }

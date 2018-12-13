@@ -21,6 +21,15 @@ public class LocacaoService {
 	
 	@Autowired
 	private EmailService emailService;
+	
+	@Autowired
+	private ClienteService clienteService;
+	
+	@Autowired 
+	private CarroService carroService;
+	
+	@Autowired
+	private SedeService sedeService;
 
 	public Locacao find(Integer id) {
 		Optional<Locacao> obj = repo.findById(id);
@@ -36,7 +45,9 @@ public class LocacaoService {
 	public Locacao insert(Locacao obj) {
 		obj.setId(null);
 		obj.setInstanteLocacao(new Date());
-		
+		obj.setCliente(clienteService.find(obj.getCliente().getId()));
+		obj.setCarro(carroService.find(obj.getCarro().getId()));
+		obj.setSede(sedeService.find(obj.getSede().getId()));
 		repo.save(obj);
 		emailService.senderLocacaoConfirmationEmail(obj);
 		return obj;
