@@ -19,6 +19,7 @@ import com.natancode.carros.domain.LocacaoLongoPeriodo;
 import com.natancode.carros.domain.Modelo;
 import com.natancode.carros.domain.Sede;
 import com.natancode.carros.enums.Cor;
+import com.natancode.carros.enums.Perfil;
 import com.natancode.carros.repositories.CarroRepository;
 import com.natancode.carros.repositories.CategoriaRepository;
 import com.natancode.carros.repositories.CidadeRepository;
@@ -128,12 +129,16 @@ public class DBService {
 		carroRepository.saveAll(Arrays.asList(car1, car2, car3, car4));
 
 		Cliente cli1 = new Cliente(null, "Renata Alves", "57137591051", "natanlaraferreira@gmail.com", pe.encode("123"));
-		Cliente cli2 = new Cliente(null, "Gustavo Green", "63539631062", "gustavogreen@gmail.com", pe.encode("123"));
+		Cliente cli2 = new Cliente(null, "Gustavo Green", "63539631062", "natan.developer@gmail.com", pe.encode("123"));
 		Cliente cli3 = new Cliente(null, "Robson Nunes", "62294218019", "robsonnunes@gmail.com", pe.encode("123456"));
 
 		cli1.getTelefones().addAll(Arrays.asList("(27) 3990-0996", "(27) 99582-6457"));
 		cli2.getTelefones().addAll(Arrays.asList("(21) 3990-8978", "(21) 97082-6457"));
 		cli3.getTelefones().addAll(Arrays.asList("(27) 3550-0016", "(27) 97882-3455"));
+		
+		cli1.addPerfil(Perfil.ADMIN);
+		cli2.addPerfil(Perfil.CLIENTE);
+		cli3.addPerfil(Perfil.CLIENTE);
 
 		LocacaoDiaria l1 = new LocacaoDiaria(null, sdf.parse("09/11/2018 09:32"), sdf.parse("09/11/2018 20:25"), cli1,
 				car1, sed1, 1);
