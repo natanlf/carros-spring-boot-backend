@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import com.natancode.carros.domain.Cliente;
 import com.natancode.carros.dto.ClienteDTO;
 import com.natancode.carros.dto.ClienteNewDTO;
+import com.natancode.carros.enums.Perfil;
 import com.natancode.carros.repositories.ClienteRepository;
+import com.natancode.carros.security.UserSS;
+import com.natancode.carros.services.exceptions.AuthorizationException;
 import com.natancode.carros.services.exceptions.DataIntegrityException;
 import com.natancode.carros.services.exceptions.ObjectNotFoundException;
 
@@ -25,6 +28,13 @@ public class ClienteService {
 	private BCryptPasswordEncoder pe;
 
 	public Cliente find(Integer id) {
+		UserSS user = UserService.authenticated(); //pega o usuário logado
+		
+		//se não possue perfil de ADMIN e se o id que estou buscando não é igual do usuário logado
+		if(user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		} 
+		
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName(), null));
