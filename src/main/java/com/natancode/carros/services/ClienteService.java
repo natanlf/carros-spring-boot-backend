@@ -1,5 +1,6 @@
 package com.natancode.carros.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.natancode.carros.domain.Cliente;
 import com.natancode.carros.dto.ClienteDTO;
@@ -26,6 +28,9 @@ public class ClienteService {
 	
 	@Autowired
 	private BCryptPasswordEncoder pe;
+	
+	@Autowired
+	private S3Service s3service;
 
 	public Cliente find(Integer id) {
 		UserSS user = UserService.authenticated(); //pega o usuário logado
@@ -83,5 +88,9 @@ public class ClienteService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível deletar pois há relações com outras entidades");
 		}
+	}
+	
+	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		return s3service.uploadFile(multipartFile);
 	}
 }
