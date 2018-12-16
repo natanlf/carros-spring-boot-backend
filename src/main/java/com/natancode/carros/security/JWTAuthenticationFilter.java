@@ -69,6 +69,7 @@ private AuthenticationManager authenticationManager;
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
       String token = jwtUtil.generateToken(username); //Gera o token passando email como parametro
       res.addHeader("Authorization", "Bearer " + token); //retorno o token no cabeçalho da resposta
+      res.addHeader("access-control-expose-headers", "Authorization"); //resolve problema de cors
 	}
 	
 	//classe abaixo que conserta o problema de erro de email e senha inválidos
