@@ -75,7 +75,39 @@ public class DBService {
 		Modelo mod2 = new Modelo(null, "Ford Mustang");
 		Modelo mod3 = new Modelo(null, "Toyota Hilux");
 		Modelo mod4 = new Modelo(null, "Fiat Uno");
-		modeloRepository.saveAll(Arrays.asList(mod1, mod2, mod3, mod4));
+		Modelo camaroM = new Modelo(null, "Chevrolet Camaro");
+		Modelo vectraM = new Modelo(null, "Chevrolet Vectra");
+		Modelo prismaM = new Modelo(null, "Chevrolet Prisma");
+		Modelo hondaCM = new Modelo(null, "Honda Civic");
+		Modelo bmwM = new Modelo(null, "BMW M3");
+		Modelo audiAM = new Modelo(null, "Audi Serie A");
+		Modelo audiTTM = new Modelo(null, "Audi TT");
+		Modelo mod12 = new Modelo(null, "Chevrolet Cruze");
+		Modelo mod13 = new Modelo(null, "Dodge Viper");
+		Modelo mod14 = new Modelo(null, "Chevrolet Monza");
+		Modelo mod15 = new Modelo(null, "Chevrolet Corvette");
+		Modelo mod16 = new Modelo(null, "Honda City");
+		Modelo mod17 = new Modelo(null, "Honda Fit");
+		Modelo mod18 = new Modelo(null, "Fiat Toro");
+		Modelo mod19 = new Modelo(null, "Wolksvagem Polo");
+		Modelo mod20 = new Modelo(null, "Wolksvagem Golf");
+		Modelo mod21 = new Modelo(null, "Dodge Challenger");
+		Modelo mod22 = new Modelo(null, "Porche Cayman");
+		Modelo mod23 = new Modelo(null, "Toyota Corolla");
+		Modelo mod24 = new Modelo(null, "Fiat Cronos");
+		Modelo mod25 = new Modelo(null, "Audi R8");
+		Modelo mod26 = new Modelo(null, "Ford Focus");
+		Modelo mod27 = new Modelo(null, "Porche 911");
+		Modelo mod28 = new Modelo(null, "Renault Megane");
+		Modelo mod29 = new Modelo(null, "Renault Fluence");
+		Modelo mod30 = new Modelo(null, "Ford Fusion");
+		Modelo mod31 = new Modelo(null, "Toyota Truck");
+		Modelo mod32 = new Modelo(null, "Land Rover");
+		Modelo mod33 = new Modelo(null, "Volvo X");
+		Modelo mod34 = new Modelo(null, "Aston Martin DB9");
+		Modelo mod35 = new Modelo(null, "Lamborghini Aventador");
+		Modelo mod36 = new Modelo(null, "Ford Raptor");
+		modeloRepository.saveAll(Arrays.asList(mod1, mod2, mod3, mod4, camaroM, vectraM, prismaM,hondaCM,bmwM,audiAM,audiTTM,mod12,mod13,mod14,mod15,mod16,mod17,mod18,mod19,mod20,mod21,mod22,mod23,mod24,mod25,mod26,mod27,mod28,mod29,mod30,mod31,mod32,mod33,mod34,mod35,mod36));
 
 		Estado est1 = new Estado(null, "Rio de Janeiro");
 		Estado est2 = new Estado(null, "Minas Gerais");
@@ -110,24 +142,53 @@ public class DBService {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Carro car1 = new Carro(null, "Onix 1.4 Advantage", "POR-5231", sdf.parse("09/11/2018 00:00"), cat1, Cor.BRANCO,
-				mod1, 2018, sed1);
-		Carro car2 = new Carro(null, "Mustang Cobra Jet", "XOR-3089", sdf.parse("09/11/2018 00:00"), cat2, Cor.PRETO,
+				mod1, 2015, sed1);
+		Carro car2 = new Carro(null, "Mustang Cobra Jet", "XOR-3089", sdf.parse("09/11/2018 00:00"), cat2, Cor.VERMELHO,
 				mod2, 2018, sed1);
-		Carro car3 = new Carro(null, "Hilux Cabine Dupla", "TOR-3089", sdf.parse("09/11/2018 00:00"), cat3, Cor.CINZA,
-				mod3, 2016, sed1);
+		Carro car3 = new Carro(null, "Hilux Cabine Dupla", "TOR-3089", sdf.parse("09/11/2018 00:00"), cat3, Cor.VERMELHO,
+				mod3, 2018, sed1);
 		Carro car4 = new Carro(null, "Uno Sporting 1.4 EVO", "YOR-5589", sdf.parse("10/11/2018 00:00"), cat1,
-				Cor.VERMELHO, mod4, 2017, sed3);
+				Cor.BRANCO, mod4, 2017, sed1);
+		
+		Carro CamaroZl = new Carro(null, "Camaro ZL", "YOR-1239", sdf.parse("10/11/2018 00:00"), cat2,
+				Cor.VERMELHO, camaroM, 2017, sed1);
+		Carro camaroRs = new Carro(null, "Camaro RS", "TYR-1239", sdf.parse("10/11/2018 00:00"), cat2,
+				Cor.VERMELHO, camaroM, 2018, sed1);
+		
+		Carro vectra = new Carro(null, "Vectra GT", "YOR-8547", sdf.parse("10/11/2018 00:00"), cat1,
+				Cor.AZUL, vectraM, 2009, sed1);
+		
+		Carro prisma = new Carro(null, "Prisma Advantage", "YOR-8507", sdf.parse("10/11/2018 00:00"), cat4,
+				Cor.PRETO, prismaM, 2016, sed1);
+		
+		Carro hondaCivic = new Carro(null, "Honda Civic", "VNR-8507", sdf.parse("10/11/2018 00:00"), cat4,
+				Cor.VERDE, hondaCM, 2016, sed1);
+		
+		Carro bmw10 = new Carro(null, "BMW M3", "VXR-8587", sdf.parse("10/11/2018 00:00"), cat2,
+				Cor.CINZA, bmwM, 2018, sed1);
+		Carro bmw11 = new Carro(null, "BMW M3", "VXR-8556", sdf.parse("10/11/2018 00:00"), cat2,
+				Cor.AZUL, bmwM, 2018, sed1);
+		Carro bmw12 = new Carro(null, "BMW M3", "VXT-7587", sdf.parse("10/11/2018 00:00"), cat2,
+				Cor.PRETO, bmwM, 2018, sed1);
+		Carro bmw13 = new Carro(null, "BMW M3", "WXR-8787", sdf.parse("10/11/2018 00:00"), cat2,
+				Cor.BRANCO, bmwM, 2018, sed1);
 
-		cat1.getCarros().addAll(Arrays.asList(car1, car4));
-		cat2.getCarros().addAll(Arrays.asList(car2));
+		cat1.getCarros().addAll(Arrays.asList(car1, car4, vectra));
+		cat2.getCarros().addAll(Arrays.asList(car2, CamaroZl, camaroRs, bmw10,bmw11,bmw12,bmw13));
 		cat3.getCarros().addAll(Arrays.asList(car3));
+		cat4.getCarros().addAll(Arrays.asList(prisma,hondaCivic));
 
 		mod1.getCarros().addAll(Arrays.asList(car1));
 		mod2.getCarros().addAll(Arrays.asList(car2));
 		mod3.getCarros().addAll(Arrays.asList(car3));
 		mod4.getCarros().addAll(Arrays.asList(car4));
+		camaroM.getCarros().addAll(Arrays.asList(camaroRs, CamaroZl));
+		vectraM.getCarros().addAll(Arrays.asList(vectra));
+		prismaM.getCarros().addAll(Arrays.asList(prisma));
+		hondaCM.getCarros().addAll(Arrays.asList(hondaCivic));
+		bmwM.getCarros().addAll(Arrays.asList(bmw10,bmw11,bmw12,bmw13));
 
-		carroRepository.saveAll(Arrays.asList(car1, car2, car3, car4));
+		carroRepository.saveAll(Arrays.asList(car1, car2, car3, car4, camaroRs,CamaroZl,vectra,prisma,hondaCivic,bmw10,bmw11,bmw12,bmw13));
 
 		Cliente cli1 = new Cliente(null, "Renata Alves", "57137591051", "natanlaraferreira@gmail.com", pe.encode("123"));
 		Cliente cli2 = new Cliente(null, "Gustavo Green", "63539631062", "natan.developer@gmail.com", pe.encode("123"));

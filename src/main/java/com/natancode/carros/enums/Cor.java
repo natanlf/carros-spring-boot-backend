@@ -5,7 +5,10 @@ public enum Cor {
 	BRANCO(1, "Branco"),
 	PRETO(2, "Preto"),
 	CINZA(3, "Cinza"),
-	VERMELHO(4, "Vermelho");
+	VERMELHO(4, "Vermelho"),
+	AZUL(5, "Azul"),
+	AMARELO(6, "Amarelo"),
+	VERDE(7, "Verde");
 	
 	private int cod;
 	private String descricao;
