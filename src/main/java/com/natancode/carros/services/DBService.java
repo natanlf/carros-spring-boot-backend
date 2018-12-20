@@ -65,10 +65,11 @@ public class DBService {
 
 	public void instantiateTestDatabase() throws ParseException {
 
-		Categoria cat1 = new Categoria(null, "Compacto", 50.00);
-		Categoria cat2 = new Categoria(null, "Luxo", 300.00);
-		Categoria cat3 = new Categoria(null, "SUV", 100.00);
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		Categoria cat1 = new Categoria(null, "Hatch", 100.00);
+		Categoria cat2 = new Categoria(null, "Luxo", 500.00);
+		Categoria cat3 = new Categoria(null, "SUV", 200.00);
+		Categoria cat4 = new Categoria(null, "Sedan", 100.00);
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4));
 
 		Modelo mod1 = new Modelo(null, "Chevrolet Onix");
 		Modelo mod2 = new Modelo(null, "Ford Mustang");
