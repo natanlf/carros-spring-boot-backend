@@ -1,7 +1,6 @@
 package com.natancode.carros.resources;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -35,12 +34,6 @@ public class CarroResource {
 		return ResponseEntity.ok().body(obj);
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<?> findAll() {
-		List<Carro> list = service.findAll();
-		return ResponseEntity.ok().body(list);
-	}
-
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CarroNewDTO objDto){
 		Carro obj = service.fromDTO(objDto);
@@ -65,7 +58,7 @@ public class CarroResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value="/page" ,method=RequestMethod.GET) 
+	@RequestMapping(method=RequestMethod.GET) 
 	public ResponseEntity<Page<CarroDTO>> findPage( //parametro opcionais
 			@RequestParam(value="categoria", defaultValue="1") Integer categoria,
 			@RequestParam(value="nome", defaultValue="") String nome,
