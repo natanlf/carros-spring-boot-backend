@@ -1,5 +1,6 @@
 package com.natancode.carros.services;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +55,7 @@ public class LocacaoService {
 		obj.setCliente(clienteService.find(obj.getCliente().getId()));
 		obj.setCarro(carroService.find(obj.getCarro().getId()));
 		obj.setSede(sedeService.find(obj.getSede().getId()));
+		obj.setInstanteDevolucao(modifyHourTimeZone(obj.getInstanteDevolucao()));
 		repo.save(obj);
 		emailService.sendLocacaoConfirmationHtmlEmail(obj);
 		return obj;
@@ -68,6 +70,13 @@ public class LocacaoService {
 		//vou retornar somente os pedidos do cliente que está logado
 		Cliente cliente = clienteService.find(user.getId());
 		return repo.findByCliente(cliente, pageRequest);
+	}
+	
+	private Date modifyHourTimeZone(Date data) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.HOUR_OF_DAY, 3); //adiciona 3 horas
+		return cal.getTime();
 	}
 
 }
