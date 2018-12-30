@@ -6,6 +6,8 @@
 </head>
 <body>
 	<div>
+	<h1>Sistema de aluguel de carros</h1>
+	<img src="https://s3-sa-east-1.amazonaws.com/natancode-carros-spring-ionic/logo.png">
 		<h1>
 			Locação número: <span th:text="${locacao.id}"> </span>
 		</h1>
@@ -14,13 +16,19 @@
 				th:text="${#dates.format(locacao.instanteLocacao, 'dd/MM/yyyy hh:mm')}"></span>
 		</p>
 		<p>
+			Devolução: <span
+				th:text="${#dates.format(locacao.instanteDevolucao, 'dd/MM/yyyy')}"></span>
+		</p>
+		<p>
 			Cliente: <span th:text="${locacao.cliente.nome}"></span>
 		</p>
 		<p>
 			Carro: <span
 				th:text="${locacao.carro.nome}"></span>
 		</p>
-
+		<hr>
+	<b>É apenas um sistema usado no portfolio do programador Natan Lara Ferreira</b>
+	<p><b>Para mais informações: <a href="https://natancode.com/">Clique aqui</a></b></p>
 	</div>
 </body>
 </html> 

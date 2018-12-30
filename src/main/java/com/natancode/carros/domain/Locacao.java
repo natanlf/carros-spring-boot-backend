@@ -12,6 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Future;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -29,6 +30,7 @@ public class Locacao implements Serializable {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date instanteLocacao;
 	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Future
 	private Date instanteDevolucao;
 	
 	@ManyToOne

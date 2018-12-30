@@ -164,19 +164,15 @@ public class DBService {
 		Carro hondaCivic = new Carro(null, "Honda Civic", "VNR-8507", sdf.parse("10/11/2018 00:00"), cat4,
 				Cor.VERDE, hondaCM, 2016, sed1);
 		
-		Carro bmw10 = new Carro(null, "BMW M3", "VXR-8587", sdf.parse("10/11/2018 00:00"), cat2,
+		Carro bmw10 = new Carro(null, "BMW M3 320I", "VXR-8587", sdf.parse("10/11/2018 00:00"), cat2,
 				Cor.CINZA, bmwM, 2018, sed1);
-		Carro bmw11 = new Carro(null, "BMW M3", "VXR-8556", sdf.parse("10/11/2018 00:00"), cat2,
+		Carro bmw11 = new Carro(null, "BMW M3 E92L", "VXR-8556", sdf.parse("10/11/2018 00:00"), cat2,
 				Cor.AZUL, bmwM, 2018, sed1);
-		Carro bmw12 = new Carro(null, "BMW M3", "VXT-7587", sdf.parse("10/11/2018 00:00"), cat2,
+		Carro bmw12 = new Carro(null, "BMW M3 E90", "VXT-7587", sdf.parse("10/11/2018 00:00"), cat2,
 				Cor.PRETO, bmwM, 2018, sed1);
-		Carro bmw13 = new Carro(null, "BMW M3", "WXR-8787", sdf.parse("10/11/2018 00:00"), cat2,
+		Carro bmw13 = new Carro(null, "BMW M3 E92", "WXR-8787", sdf.parse("10/11/2018 00:00"), cat2,
 				Cor.BRANCO, bmwM, 2018, sed1);
 		
-		Carro audiA = new Carro(null, "Audi A6", "KLR-5687", sdf.parse("10/11/2018 00:00"), cat2,
-				Cor.PRETO, audiAM, 2018, sed1);
-		Carro audiTT1 = new Carro(null, "Audi TT", "KLR-5622", sdf.parse("10/11/2018 00:00"), cat2,
-				Cor.PRETO, audiTTM, 2014, sed1);
 		Carro audiTT2 = new Carro(null, "Audi TT", "KLR-5611", sdf.parse("10/11/2018 00:00"), cat2,
 				Cor.BRANCO, audiTTM, 2012, sed1);
 		
@@ -187,7 +183,7 @@ public class DBService {
 				Cor.CINZA, cruzeM, 2017, sed1);
 
 		cat1.getCarros().addAll(Arrays.asList(car1, car4, vectra));
-		cat2.getCarros().addAll(Arrays.asList(car2, CamaroZl, camaroRs, bmw10,bmw11,bmw12,bmw13, audiA,audiTT1,audiTT2));
+		cat2.getCarros().addAll(Arrays.asList(car2, CamaroZl, camaroRs, bmw10,bmw11,bmw12,bmw13,audiTT2));
 		cat3.getCarros().addAll(Arrays.asList(car3));
 		cat4.getCarros().addAll(Arrays.asList(prisma,hondaCivic,cruze1,cruze2));
 
@@ -200,15 +196,14 @@ public class DBService {
 		prismaM.getCarros().addAll(Arrays.asList(prisma));
 		hondaCM.getCarros().addAll(Arrays.asList(hondaCivic));
 		bmwM.getCarros().addAll(Arrays.asList(bmw10,bmw11,bmw12,bmw13));
-		audiAM.getCarros().addAll(Arrays.asList(audiA));
-		audiTTM.getCarros().addAll(Arrays.asList(audiTT1,audiTT2));
+		audiTTM.getCarros().addAll(Arrays.asList(audiTT2));
 		cruzeM.getCarros().addAll(Arrays.asList(cruze1,cruze2));
 
-		carroRepository.saveAll(Arrays.asList(car1, car2, car3, car4, camaroRs,CamaroZl,vectra,prisma,hondaCivic,bmw10,bmw11,bmw12,bmw13,audiA,audiTT1,audiTT2,cruze1,cruze2));
+		carroRepository.saveAll(Arrays.asList(car1, car2, car3, car4, camaroRs,CamaroZl,vectra,prisma,hondaCivic,bmw10,bmw11,bmw12,bmw13,audiTT2,cruze1,cruze2));
 
-		Cliente cli1 = new Cliente(null, "Renata Alves", "57137591051", "natanlaraferreira@gmail.com", pe.encode("123"));
-		Cliente cli2 = new Cliente(null, "Gustavo Green", "63539631062", "natan.developer@gmail.com", pe.encode("123"));
-		Cliente cli3 = new Cliente(null, "Robson Nunes", "62294218019", "robsonnunes@gmail.com", pe.encode("123456"));
+		Cliente cli1 = new Cliente(null, "Natan Lara Ferreira", "57137591051", "natanlaraferreira@gmail.com", pe.encode("123"));
+		Cliente cli2 = new Cliente(null, "Natan Developer", "63539631062", "natan.developer@gmail.com", pe.encode("123"));
+		Cliente cli3 = new Cliente(null, "Ana Silva", "62294218019", "anasilva12345@gmail.com", pe.encode("123456"));
 
 		cli1.getTelefones().addAll(Arrays.asList("(27) 3990-0996", "(27) 99582-6457"));
 		cli2.getTelefones().addAll(Arrays.asList("(21) 3990-8978", "(21) 97082-6457"));
@@ -218,12 +213,12 @@ public class DBService {
 		cli2.addPerfil(Perfil.CLIENTE);
 		cli3.addPerfil(Perfil.CLIENTE);
 
-		LocacaoDiaria l1 = new LocacaoDiaria(null, sdf.parse("09/11/2018 09:32"), sdf.parse("09/11/2018 20:25"), cli1,
+		LocacaoDiaria l1 = new LocacaoDiaria(null, sdf.parse("09/01/2019 09:32"), sdf.parse("09/01/2019 20:25"), cli1,
 				car1, sed1, 1);
-		LocacaoLongoPeriodo l2 = new LocacaoLongoPeriodo(null, sdf.parse("09/11/2018 09:32"),
-				sdf.parse("12/11/2018 20:25"), cli2, car2, sed1, 5.00);
-		LocacaoLongoPeriodo l3 = new LocacaoLongoPeriodo(null, sdf.parse("12/11/2018 15:02"),
-				sdf.parse("16/11/2018 08:32"), cli1, car3, sed1, 10.00);
+		LocacaoLongoPeriodo l2 = new LocacaoLongoPeriodo(null, sdf.parse("09/01/2019 09:32"),
+				sdf.parse("12/01/2019 20:25"), cli2, car2, sed1, 5.00);
+		LocacaoLongoPeriodo l3 = new LocacaoLongoPeriodo(null, sdf.parse("12/01/2019 15:02"),
+				sdf.parse("16/01/2019 08:32"), cli1, car3, sed1, 10.00);
 
 		cli1.getLocacoes().addAll(Arrays.asList(l1, l3));
 		cli2.getLocacoes().addAll(Arrays.asList(l2));
