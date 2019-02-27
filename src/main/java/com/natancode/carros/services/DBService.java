@@ -261,12 +261,12 @@ public class DBService {
 		cli2.addPerfil(Perfil.CLIENTE);
 		cli3.addPerfil(Perfil.CLIENTE);
 
-		LocacaoDiaria l1 = new LocacaoDiaria(null, sdf.parse("09/01/2019 09:32"), sdf.parse("09/01/2019 20:25"), cli1,
+		LocacaoDiaria l1 = new LocacaoDiaria(null, sdf.parse("09/03/2019 09:32"), sdf.parse("09/03/2019 20:25"), cli1,
 				car1, sed1, 1);
-		LocacaoLongoPeriodo l2 = new LocacaoLongoPeriodo(null, sdf.parse("09/01/2019 09:32"),
-				sdf.parse("12/01/2019 20:25"), cli2, car2, sed1, 5.00);
-		LocacaoLongoPeriodo l3 = new LocacaoLongoPeriodo(null, sdf.parse("12/01/2019 15:02"),
-				sdf.parse("16/01/2019 08:32"), cli1, car3, sed1, 10.00);
+		LocacaoLongoPeriodo l2 = new LocacaoLongoPeriodo(null, sdf.parse("09/03/2019 09:32"),
+				sdf.parse("12/03/2019 20:25"), cli2, car2, sed1, 5.00);
+		LocacaoLongoPeriodo l3 = new LocacaoLongoPeriodo(null, sdf.parse("12/03/2019 15:02"),
+				sdf.parse("16/03/2019 08:32"), cli1, car3, sed1, 10.00);
 
 		cli1.getLocacoes().addAll(Arrays.asList(l1, l3));
 		cli2.getLocacoes().addAll(Arrays.asList(l2));
